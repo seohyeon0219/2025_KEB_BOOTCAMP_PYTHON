@@ -16,9 +16,9 @@ if n >= 2:
             # count = count + 1
             is_prime = False
             break
+        print(i, end = ' ')
 else:
     if_prime = False
-
 
 # if count == 0:
 if is_prime:
