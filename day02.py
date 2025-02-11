@@ -25,3 +25,4 @@ if is_prime:
     print(f"{n} is prime number")
 else :
     print(f"{n} is not prime number")
+
