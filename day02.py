@@ -1,4 +1,5 @@
-# 소수 찾기 프로그램
+# 구간 소수 찾기 프로그램
+
 def is_prime(num) -> bool:
     """
     소수 판정 함수  / 소수면 True, 아니면 False
@@ -18,8 +19,11 @@ def is_prime(num) -> bool:
 
 help(is_prime)
 
-n = int(input("Input number : "))
-if is_prime(n):
-    print(f"{n} is prime number")
-else:
-    print(f"{n} is NOT prime number")
+startNum = int(input("Start number : "))
+endNum = int(input("End number : "))
+
+i = startNum
+while(i <= endNum):
+    if is_prime(i):
+        print(i)
+    i += 1
