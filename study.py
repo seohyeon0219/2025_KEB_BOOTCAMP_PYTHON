@@ -301,3 +301,210 @@ print(len(university)) # 공백도 포함!
 # for letter in univ:
 #     counts_alphabet[letter] = univ.count(letter)
 # print(counts_alphabet)
+
+# ===============================
+
+# #v4.6 day05
+# def squares(*n) -> list:
+#     """
+#     넘겨 받은 수치 데이터들의 거듭제곱 값을 리스트에 담아서 리턴
+#     :param n: tuple
+#     :return: list
+#     """
+#     return [pow(i, 2) for i in n]
+#     #return n * n
+#
+#
+# def run_function(f, *number) -> list:
+#     return f(*number)
+#
+# print(squares(7, 5, 2))
+# print(run_function(squares, 9, 10))
+
+# ======================
+
+#v4.7 day05
+# closure
+# def out_func(nout):
+#     def inner_func():
+#         return nout * nout
+#     return inner_func
+#
+#
+# x = out_func(9)
+# print(type(x))
+# print(x)
+# print(x())
+
+# inner function
+# def out_func(nout):
+#     def inner_func(nin):
+#         return nin * nin
+#     return inner_func(nout)
+#
+# print(out_func(5))
+
+# =========================================
+
+# #v4.8
+numbers = ["7", "-11", "3"]
+print(sum(map(float,numbers)))
+
+
+# numbers = ["7", "-11", "3"]
+# for n in range(len(numbers)):
+#     n.append(int(numbers[n]))
+# print(sum(ns))
+
+# numbers = ["7", "-11", "3"]
+# hap = 0
+# for number in numbers:
+#     hap = hap + int(number)
+# print(hap)
+
+# #v4.9
+# # prime number with function
+# def isprime(n) -> bool:
+#     """
+#     매개변수로 넘겨 받은 수가 소수인지 여부를 boolean으로 리턴
+#     :param n: 판정할 매개변수
+#     :return: 소수면 True, 소수가 아니면 False
+#     """
+#     if n < 2:
+#         return False
+#     else:
+#         i = 2
+#         while i*i <= n:
+#             if n % i == 0:
+#                 return False
+#             i += 1
+#         return True
+#
+#
+# while True:
+#     menu = input("1) Fahrenheit -> Celsius   2) Celsius -> Fahrenheit   3) Prime1   4) Prime2   5) Quit program : ")
+#
+#     if menu == '1':
+#         fahrenheit = float(input('Input Fahrenheit : '))
+#         print(f'Fahrenheit : {fahrenheit}F, Celsius : {((fahrenheit-32.0)*5.0/9.0):.4f}C')
+#     elif menu == '2':
+#         celsius = float(input('Input Celsius : '))
+#         print(f'Celsius : {celsius}C, Fahrenheit : {((celsius*9.0/5.0)+32.0):.4f}F')
+#     elif menu == '3':
+#         number = int(input("Input number : "))
+#         if isprime(number):
+#             print(f'{number} is prime number')
+#         else:
+#             print(f'{number} is NOT prime number!')
+#     elif menu == '4':
+#         n1, n2 = map(int, input("Input first second number : ").split())
+#         n1, n2 = min(n1, n2), max(n1, n2)
+#         # numbers = input("Input first second number : ").split()
+#         # n1 = int(numbers[0])
+#         # n2 = int(numbers[1])
+#         # if n1 > n2:
+#         #     n1, n2 = n2, n1
+#
+#         for number in range(n1, n2 + 1):
+#             if isprime(number):
+#                 print(number, end=' ')
+#         print()
+#     elif menu == '5':
+#         print('Terminate Program.')
+#         break
+#     else:
+#         print('Invalid Menu!')
+#
+#     # ==========================================
+
+#v5.0
+def squares(n):
+    return n * n
+
+even_numbers = [i for i in range(51) if i % 2 == 0]
+print(even_numbers)
+print(tuple(map(squares, even_numbers)))
+
+# print(tuple(map(lambda x: x**2, even_numbers)))
+z = lambda x: pow(x, 2)
+print(tuple(map(z, even_numbers)))
+
+ns = [-9,7,-11,-988]
+print(tuple(map(abs,ns)))
+
+# ============================
+
+# #v5.1
+# # decorator
+# def description(f):  # closure
+#     def inner(*args):
+#         print(f.__name__)
+#         print(f.__doc__)
+#         r = f(*args)
+#         return r
+#
+#     return inner
+#
+#
+# def squares(n):
+#     """
+#     제곱 함수
+#     """
+#     return n * n
+#
+# @description
+# def power(b, e):
+#     """
+#     거듭제곱 함수
+#     """
+#     result = 1
+#     for _ in range(e):
+#         result = result * b
+#     return result
+#
+#
+# f1 = description(squares)
+# print(f1(9))
+# print(power(2, 10))
+# f2 = description(power)
+# print(f2(2, 10))
+
+# print(squares(7))
+# print(squares.__doc__)
+
+# def my_range(first=0, last=5, step=1):
+#     number = first
+#     while number < last:
+#         yield number
+#         number += step
+#
+# r = my_range()
+# print(r, type(r))
+#
+# for x in r:
+#     print(x)
+# for x in r:
+#     print(x)
+
+# ======================================
+
+def factorial_repetition(n) -> int:
+    result = 1
+    for i in range(2, n+1):
+        result = result * i
+    return result
+
+number = int(input())
+print(f'{number}! = {factorial_repetition(number)} ')
+
+s = time.time()
+print(f"{number}! = {factorial_repetition(number)}")
+e = time.time()
+print(e-s)
+
+def time_decorator(func, *arg):
+    def wrapper(*arg):
+        s = time.time()
+        r = func(*arg)
+        e = time.time()
+        print(f'실행시간 : {e-s}초')
